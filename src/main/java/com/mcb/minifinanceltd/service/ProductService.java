@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -17,7 +18,9 @@ import com.mcb.minifinanceltd.repository.MCBProductRepository;
 import com.mcb.minifinanceltd.repository.MCBusers;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductService {
@@ -40,9 +43,11 @@ public class ProductService {
 		return repository.findAll();
 	}
 
-	public String deleteProduct(int id) {
+	public  ResponseEntity<Map<String, Object>> deleteProduct(int id) {
 		repository.deleteById(id);
-		return "product removed !! " + id;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("deletedId", id);
+		return ResponseEntity.ok(map);
 	}
 
 	public Users login(Users user) {

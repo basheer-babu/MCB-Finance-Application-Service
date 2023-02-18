@@ -1,6 +1,7 @@
 package com.mcb.minifinanceltd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import com.mcb.minifinanceltd.entity.Users;
 import com.mcb.minifinanceltd.service.ProductService;
 
 import java.util.List;
+import java.util.Map;
 
 //@CrossOrigin
 @RestController
@@ -37,7 +39,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable int id) {
+    public  ResponseEntity<Map<String, Object>> deleteProduct(@PathVariable int id) {
         return service.deleteProduct(id);
     }
 
